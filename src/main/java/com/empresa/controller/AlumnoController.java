@@ -75,10 +75,10 @@ public class AlumnoController {
 		}
 	}
 
-	@GetMapping(value = "/buscaPorDNI/{id}")
-	public ResponseEntity<List<Alumno>> lista(@PathVariable("id") String idAlumno) {
+	@GetMapping(value = "/buscaPorDNI/{dni}")
+	public ResponseEntity<List<Alumno>> lista(@PathVariable("dni") String dniAlumno) {
 		log.info(">>>> lista <<<<");
-		List<Alumno> lstAlumno = service.listaPorDni(idAlumno);
+		List<Alumno> lstAlumno = service.listaPorDni(dniAlumno);
 		return ResponseEntity.ok(lstAlumno);
 	}
 }
