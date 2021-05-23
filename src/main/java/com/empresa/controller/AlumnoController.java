@@ -75,7 +75,7 @@ public class AlumnoController {
 		}
 	}
 
-	@GetMapping("id")
+	@GetMapping(value = "/{id}")
 	public ResponseEntity<List<Alumno>> lista(@PathVariable("id") String idAlumno) {
 		log.info(">>>> lista <<<<");
 		List<Alumno> lstAlumno = service.listaPorDni(idAlumno);
