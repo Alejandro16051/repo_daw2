@@ -65,7 +65,6 @@ public class AlumnoController {
 	}
 
 	@DeleteMapping("/{id}")
-
 	public ResponseEntity<Alumno> elimina(@PathVariable("id") int idAlumno) {
 		log.info(">>>> elimina <<<< cod: " + idAlumno);
 
@@ -78,5 +77,12 @@ public class AlumnoController {
 			log.info(">>>> ELIMINA:	no existe el id: " + idAlumno);
 			return ResponseEntity.badRequest().build();
 		}
+	}
+
+	@GetMapping("id")
+	public ResponseEntity<List<Alumno>> lista(@PathVariable("id") String idAlumno) {
+		log.info(">>>> lista <<<<");
+		List<Alumno> lstAlumno = service.listaPorDni(idAlumno);
+		return ResponseEntity.ok(lstAlumno);
 	}
 }
