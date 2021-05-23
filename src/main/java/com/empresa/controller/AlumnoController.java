@@ -46,11 +46,9 @@ public class AlumnoController {
 	}
 
 	@PutMapping
-	public ResponseEntity<Alumno> actualizar(@RequestBody Alumno obj) {
-		log.info(">>>> actualiza <<<< cod: " + obj.getIdAlumno());
-
+	public ResponseEntity<Alumno> actualiza(@RequestBody Alumno obj) {
+		log.info(">>>> actualiza " + obj.getIdAlumno());
 		Optional<Alumno> optAlumno = service.obtienePorId(obj.getIdAlumno());
-
 		if (optAlumno.isPresent()) {
 			Alumno objSalida = service.insertaActualizaAlumno(obj);
 			if (objSalida != null) {
@@ -59,22 +57,20 @@ public class AlumnoController {
 				return ResponseEntity.badRequest().build();
 			}
 		} else {
-			log.info(">>>> ACTUALIZA:	no existe el id: " + obj.getIdAlumno());
+			log.info(">>>> actualiza no existe el id : " + obj.getIdAlumno());
 			return ResponseEntity.badRequest().build();
 		}
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Alumno> elimina(@PathVariable("id") int idAlumno) {
-		log.info(">>>> elimina <<<< cod: " + idAlumno);
-
+		log.info(">>>> elimina " + idAlumno);
 		Optional<Alumno> optAlumno = service.obtienePorId(idAlumno);
-
 		if (optAlumno.isPresent()) {
 			service.eliminaAlumno(idAlumno);
 			return ResponseEntity.ok(optAlumno.get());
 		} else {
-			log.info(">>>> ELIMINA:	no existe el id: " + idAlumno);
+			log.info(">>>> elimina no existe el id : " + idAlumno);
 			return ResponseEntity.badRequest().build();
 		}
 	}
